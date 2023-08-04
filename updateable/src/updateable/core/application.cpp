@@ -15,8 +15,21 @@ namespace Updateable
 
     void Application::run()
     {
-        std::cout << "Running application " << m_spec.name << "\n";
+        for (auto layer : m_layers)
+            layer->onAttach();
+
         while (true)
-            ;
+        {
+            for (auto layer : m_layers)
+                layer->onUpdate();
+        }
+
+        for (auto layer : m_layers)
+            layer->onDetach();
+    }
+
+    void Application::pushLayer(Layer *layer)
+    {
+        m_layers.push_back(layer);
     }
 }

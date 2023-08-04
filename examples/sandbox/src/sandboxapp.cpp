@@ -1,15 +1,22 @@
-#include "sandboxapp.h"
+#include <updateable/updateable.h>
 
-SandboxApp::SandboxApp(const Updateable::ApplicationSpecification &spec)
-    : Updateable::Application(spec)
+#include "sandboxlayer.h"
+
+class SandboxApp : public Updateable::Application
 {
-}
+public:
+    SandboxApp(const Updateable::ApplicationSpecification &spec)
+        : Updateable::Application(spec)
+    {
+        pushLayer(new SandboxLayer());
+    }
 
-SandboxApp::~SandboxApp()
-{
-}
+    ~SandboxApp() override
+    {
+    }
+};
 
-extern "C" Updateable::Application* createApplication()
+extern "C" Updateable::Application *createApplication()
 {
     Updateable::ApplicationSpecification spec;
     spec.name = "Sandbox";

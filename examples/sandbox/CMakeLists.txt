@@ -7,6 +7,7 @@ target_include_directories(sandbox PRIVATE ../../loader/src)
 target_link_libraries(sandbox PRIVATE updatableloader)
 
 add_library(sandboxapp SHARED 
-    src/sandboxapp.h src/sandboxapp.cpp)
+    src/sandboxapp.cpp
+    src/sandboxlayer.h src/sandboxlayer.cpp)
 target_include_directories(sandboxapp PRIVATE ../../updateable/src)
 target_link_libraries(sandboxapp PRIVATE updateable)
