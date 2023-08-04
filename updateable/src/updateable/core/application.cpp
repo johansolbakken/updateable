@@ -13,12 +13,12 @@ namespace Updateable
     {
     }
 
-    void Application::run()
+    ExitStatus Application::run()
     {
         for (auto layer : m_layers)
             layer->onAttach();
 
-        while (true)
+        while (m_running)
         {
             for (auto layer : m_layers)
                 layer->onUpdate();
@@ -26,6 +26,20 @@ namespace Updateable
 
         for (auto layer : m_layers)
             layer->onDetach();
+
+        return m_exitStatus;
+    }
+
+    void Application::close()
+    {
+        m_running = false;
+        m_exitStatus = ExitStatus::Exit;
+    }
+
+    void Application::restart()
+    {
+        m_running = false;
+        m_exitStatus = ExitStatus::Restart;
     }
 
     void Application::pushLayer(Layer *layer)

@@ -15,10 +15,15 @@ void SandboxLayer::onDetach()
 
 void SandboxLayer::onUpdate()
 {
-    static bool first = true;
-    if (first)
+    std::cout << "> ";
+    std::string input;
+    std::cin >> input;
+    if (input == "exit")
     {
-        std::cout << "SandboxLayer::onUpdate()\n";
-        first = false;
     }
+    else if (input == "restart")
+    {
+    }
+    else
+        std::cout << "Unknown command\n";
 }

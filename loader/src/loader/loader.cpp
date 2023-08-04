@@ -4,10 +4,10 @@
 
 #include <updateable/updateable.h>
 
-#include <dlfcn.h>
-
 #include <functional>
 #include <filesystem>
+
+#include "loader/dylib.h"
 
 namespace Updateable
 {
@@ -23,27 +23,19 @@ namespace Updateable
     void Loader::run()
     {
         std::string name = "lib" + m_spec.name + ".dylib";
-        void *handle = dlopen(name.c_str(), RTLD_LAZY);
-        if (!handle)
+
+        ExitStatus exitStatus = ExitStatus::Exit;
+        do
         {
-            std::cout << "Could not load dylib\n";
-            return;
-        }
-
-        typedef Updateable::Application *(*CreateApplicationFn)();
-        CreateApplicationFn createApplication = (CreateApplicationFn)dlsym(handle, "createApplication");
-
-        if (!createApplication)
-        {
-            std::cout << "Could not find createApplication\n";
-            return;
-        }
-
-        auto app = createApplication();
-        app->run();
-        delete app;
-
-        while (true)
-            ;
+            Dylib dylib(name);
+            auto app = dylib.getSymbol<Updateable::Application *(*)()>("createApplication")();
+            if (!app)
+            {
+                std::cout << "Could not load application\n";
+                return;
+            }
+            exitStatus = app->run();
+            delete app;
+        } while (exitStatus == ExitStatus::Restart);
     }
 }
