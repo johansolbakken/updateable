@@ -7,6 +7,7 @@ namespace Updateable
     struct LoaderSpecification
     {
         std::string name;
+        std::string srcPath;
     };
 
     class Loader
@@ -16,6 +17,9 @@ namespace Updateable
         ~Loader();
 
         void run();
+
+    private:
+
 
     private:
         LoaderSpecification m_spec;

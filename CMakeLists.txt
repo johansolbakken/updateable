@@ -5,4 +5,5 @@ project(updateable)
 set(CMAKE_CXX_STANDARD 23)
 
 add_subdirectory(loader)
+add_subdirectory(updateable)
 add_subdirectory(sandbox)
