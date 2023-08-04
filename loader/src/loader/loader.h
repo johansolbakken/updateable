@@ -7,7 +7,7 @@ namespace Updateable
     struct LoaderSpecification
     {
         std::string name;
-        std::string srcPath;
+        std::string buildPath;
     };
 
     class Loader

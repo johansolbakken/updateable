@@ -6,4 +6,4 @@
 * The main function should be able to build the application and pull new versions.
 
 ## Sandbox
-Current example defines a dylib and where its source is. It makes a main.cpp that sets up the loader and a sandbox app that is the app.
+Current example defines a dylib and where its source is. It makes a main.cpp that sets up the loader and a sandbox app that is the app. To run sandbox you need to be in the same folder as libsandboxapp.dylib.
