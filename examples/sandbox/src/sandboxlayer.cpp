@@ -20,9 +20,11 @@ void SandboxLayer::onUpdate()
     std::cin >> input;
     if (input == "exit")
     {
+        Updateable::Application::instance().close();
     }
     else if (input == "restart")
     {
+        Updateable::Application::instance().restart();
     }
     else
         std::cout << "Unknown command\n";

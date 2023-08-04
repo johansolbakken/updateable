@@ -1,11 +1,6 @@
 #include "loader.h"
 
-#include <iostream>
-
 #include <updateable/updateable.h>
-
-#include <functional>
-#include <filesystem>
 
 #include "loader/dylib.h"
 

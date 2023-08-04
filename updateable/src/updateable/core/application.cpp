@@ -4,9 +4,17 @@
 
 namespace Updateable
 {
+    static Application *s_instance = nullptr;
+
+    Application &Application::instance()
+    {
+        return *s_instance;
+    }
+
     Application::Application(const ApplicationSpecification &spec)
         : m_spec(spec)
     {
+        s_instance = this;
     }
 
     Application::~Application()

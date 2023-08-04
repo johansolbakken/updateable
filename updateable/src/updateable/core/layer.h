@@ -8,8 +8,8 @@ namespace Updateable
         Layer() = default;
         virtual ~Layer() = default;
 
-        virtual void onAttach() = 0;
-        virtual void onDetach() = 0;
+        virtual void onAttach() {};
+        virtual void onDetach() {};
         virtual void onUpdate() {}
     };
 }

@@ -31,6 +31,8 @@ namespace Updateable
         void close();
         void restart();
 
+        static Application& instance();
+
     private:
         ApplicationSpecification m_spec;
         std::vector<Layer *> m_layers;
